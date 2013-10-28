@@ -1,5 +1,51 @@
-git-flow
-========
+git-flow integration with phabricator
+=====================================
+
+This fork contains the work done on <https://github.com/bogdanmic/git-flow-feature-arc> (this will be removed soon). Also this fork contains some fixes suggested by [lonetwin](https://github.com/lonetwin) regarding using  ${DEVELOP_BRANCH} instead of a harcoded develop. You can find those fixes also on [his fork](https://github.com/lonetwin/gitflow). Thanks for the suggestion.
+
+Basicaly I extended the **git-flow-feature** file to use **"arc diff"** and **"arc amend"** to open and close review requests.
+All the credits for building git-flow belong to its original owner. Bellow I left untouched the originla documentation as inspiration and guide lines for the new user.
+
+To use the integration with phabricator, clone this repository and install gitflow as usual.
+
+**NOTE:** Use this fork at your own risk. It is very likely that it will not be maintained with any bugfixes ore modifications that appear in the future to the original version unless this fork gains some popularity.
+
+
+#### What is so special about this fork?
+
+Well first for it to work you need to have installed this <https://github.com/facebook/arcanist> installed.
+This is a component used by [phabricator](http://phabricator.org/) to do code review.
+
+For more details on installing **Phabricator** please check their documentation <http://www.phabricator.com/docs/phabricator/article/Installation_Guide.html>
+
+After you do that, this fork allows you to:
+ 
+ - create a code review request to the phabricator server
+ 			
+ 		git flow feature review   # it executes "arc diff develop"
+ - close the review requests after they are accepted
+ 
+ 		git flow feature finish   # it executes "arc amend" at the beginning of the normal process
+ 		
+#### How does this file modify my flow?
+The new flow for a feature looks something like this:
+
+	git flow feature
+	git flow feature start <name> [<base>]
+	git flow feature review
+	git flow feature finish <name>
+ 		
+
+I hope this is clear enough. If not, ask and maybe I will listen. I usally do :)
+
+#### Works on
+It works on mac and other linux based systems.
+Don't know about widows though. I hope this helps you as it did for me.
+Again, all credits go to the developers of **git-flow** because they build a neat little tool.
+
+
+The original git-flow documentation.
+====================================
 
 A collection of Git extensions to provide high-level repository operations
 for Vincent Driessen's [branching model](http://nvie.com/git-model "original

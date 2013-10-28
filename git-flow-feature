@@ -53,6 +53,7 @@ usage() {
 	echo "       git flow feature rebase [-i] [<name|nameprefix>]"
 	echo "       git flow feature checkout [<name|nameprefix>]"
 	echo "       git flow feature pull [-r] <remote> [<name>]"
+      	echo "       git flow feature review"
 }
 
 cmd_default() {
@@ -229,6 +230,13 @@ cmd_start() {
 	echo
 }
 
+cmd_review(){
+
+    # Open a review request for your feature in phabricator.
+    arc diff ${DEVELOP_BRANCH}
+
+}
+
 cmd_finish() {
 	DEFINE_boolean fetch false "fetch from $ORIGIN before performing finish" F
 	DEFINE_boolean rebase false "rebase instead of merge" r
@@ -339,6 +347,9 @@ cmd_finish() {
 		echo
 		exit 1
 	fi
+
+        # When you finish your feature branch, also close the code review request.
+        arc amend
 
 	# when no merge conflict is detected, just clean up the feature branch
 	helper_finish_cleanup
