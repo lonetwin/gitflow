@@ -32,7 +32,7 @@ The new flow for a feature looks something like this:
 
 	git flow feature
 	git flow feature start <name> [<base>]
-	git flow feature review
+	git flow feature review [update]
 	git flow feature finish <name>
  		
 

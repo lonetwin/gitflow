@@ -53,7 +53,7 @@ usage() {
 	echo "       git flow feature rebase [-i] [<name|nameprefix>]"
 	echo "       git flow feature checkout [<name|nameprefix>]"
 	echo "       git flow feature pull [-r] <remote> [<name>]"
-      	echo "       git flow feature review"
+      	echo "       git flow feature review [update]"
 }
 
 cmd_default() {
@@ -233,7 +233,12 @@ cmd_start() {
 cmd_review(){
 
     # Open a review request for your feature in phabricator.
-    arc diff ${DEVELOP_BRANCH}
+
+    if flag update; then
+        arc diff --update ${DEVELOP_BRANCH}
+    else
+        arc diff ${DEVELOP_BRANCH}
+    fi
 
 }
 
